@@ -15,4 +15,4 @@ The x3p-viewer allows to view files in x3p or x-y-z (`dat` file extension) forma
 Surfaces are rendered using rgl, enabling some user interaction, such as rotations and zoom.
 Use right mouse button to copy or save images in png format.
 
-Link to deployed app: [x3p-viewer]()
+Link to deployed app: [x3p-viewer](https://isu-csafe.stat.iastate.edu/shiny/x3p-viewer)

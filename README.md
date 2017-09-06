@@ -15,4 +15,12 @@ The x3p-viewer allows to view files in x3p or x-y-z (`dat` file extension) forma
 Surfaces are rendered using rgl, enabling some user interaction, such as rotations and zoom.
 Use right mouse button to copy or save images in png format.
 
-Link to deployed app: [x3p-viewer](https://isu-csafe.stat.iastate.edu/shiny/x3p-viewer)
+Link to deployed app: [x3p-viewer](https://x3p-viewer.shinyapps.io/x3p-viewer/)
+
+
+## groove-finder
+
+The groove-finder allows to manually locate grooves of land engraved areas of bullets.
+A csv file of the groove locations for the land can be downloaded.
+
+Link to deployed app: [grooves](https://haley.shinyapps.io/grooves/)

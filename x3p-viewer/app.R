@@ -44,8 +44,7 @@ ui <- fluidPage(
 )
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
-  xmin <- xmax <- ymin <- ymax <- zmax <- NULL
-  values <- reactiveValues(x3p=br411)
+  values <- reactiveValues(x3p=br411, x=NULL, y=NULL, z = br411$surface.matrix)
   
   read_input <- function(input) {
     file = input$file$datapath
@@ -94,6 +93,11 @@ server <- function(input, output, session) {
     scene1
   }
   
+#  observeEvent(input$light, {
+#    print(input$light)
+#    scene1 <- reactive({ showScene(values$x, values$y, values$z) })
+
+#  }, ignoreInit = TRUE)
   
   scene1 <- eventReactive(input$show, {
     values$x3p <- read_input(input)
@@ -106,6 +110,7 @@ server <- function(input, output, session) {
       yindx <- seq.int(from = 1, to = dim(surfmat)[2], by = sample)
       surfmat <- surfmat[xindx, yindx]
     }
+    values$surfmat <- surfmat
     
     if (prod(dim(surfmat)) > 150000) {
       session$sendCustomMessage(type = 'testmessage',
@@ -116,13 +121,9 @@ server <- function(input, output, session) {
     z <- 2*surfmat/sample # Exaggerate the relief
     y <- values$x3p$header.info$profile_inc * (1:ncol(z)) # 
     x <- values$x3p$header.info$obs_inc * (1:nrow(z)) # 
-    xmin <<- min(x)
-    xmax <<- max(x)
-    ymin <<- min(y)
-    ymax <<- max(y)
-    zmax <<- max(z, na.rm=TRUE)
-#    zlim <- range(z, na.rm=TRUE)
-#    zlen <- zlim[2] - zlim[1] + 1
+    values$x <- x
+    values$y <- y
+    values$z <- z
     
     showScene(x, y, z)
   })
